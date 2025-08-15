@@ -15,8 +15,8 @@ body {
 }
 
 .btn {
-    background-color: #fff;
-    color: #5d60ef;
+    background-color: #871b1b;
+    color: #fff9d2;
     padding: 15px 30px;
     font-size: 1em;
     font-weight: 700;
@@ -26,10 +26,9 @@ body {
     transition: 0.3s ease;
     text-decoration: none;
     display: inline-block;
+    margin: 20px;
 }
 
-p {
-    font-size: 1.2em;
-    color: #cc3c3c;
-    padding: 10px;
+.btn:hover {
+    background-color: #ef6161;
 }
