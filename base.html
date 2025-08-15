@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>base.html</title>
+</head>
+
+<body>
+    <h1>Categoria</h1>
+    <h2>Escolha que tipo de comida você deseja:</h2>
+    <form method="POST" action="/categoria/enviar">
+        <select name="food" id="food">
+            <option value="pizza">Pizza</option>
+            <option value="brigadeiro">Brigadeiro</option>
+            <option value="lasanha">Lasanha</option>
+        </select>
+
+        <button type="submit">Submeter</button>
+    </form>
+</body>
+
+</html>
