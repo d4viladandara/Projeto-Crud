@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Lojinha de Doces{% endblock %}
+
+{% block content %}
+<h2>Lista de Doces</h2>
+<ul>
+    {% for doce in doces %}
+        <li>
+            <a href="/doce/{{ doce.id }}">{{ doce.nome }}</a> - R$ {{ "%.2f"|format(doce.preco) }}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

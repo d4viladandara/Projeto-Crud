@@ -1,5 +1,20 @@
-from app import app
+
+from flask import render_template
+from flask import render_template
+from app import app  # importa o app já criado no __init__.py
+# Inicializa o banco (cria tabelas e insere dados)
+init_db()
 
 @app.route('/')
-def index():
-    return 'Hello world'
+def home():
+    db = get_db()
+    doces = db.execute('SELECT * FROM doces').fetchall()
+    return render_template('home.html', doces=doces)
+
+@app.route('/doce/<int:doce_id>')
+def detalhe_doce(doce_id):
+    db = get_db()
+    doce = db.execute('SELECT * FROM doces WHERE id = ?', (doce_id,)).fetchone()
+    if doce:
+        return render_template('doces.html', doce=doce)
+    return "Doce não encontrado", 404
