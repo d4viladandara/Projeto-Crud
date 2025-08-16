@@ -14,12 +14,7 @@
     </header>
 
     <main>
-        <ul>
-            {% for task in tasks %}
-                <li> {{ task.description }} </li>
-            {% endfor %}
-        </ul>
-        <a href="categorias.html" class="btn">Entrar</a>
+        <a href="{{ url_for('categorias') }}" class="btn">Entrar</a>
     </main>
 
 </body>

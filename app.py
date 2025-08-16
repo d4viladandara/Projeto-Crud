@@ -12,13 +12,14 @@ class Tasks(db.Model):
 
 
 #cRud base (fazer depoissss)
-@app.route('/base')
-def index():
-    return render_template('base.html')
+@app.route('/')
+def categorias():
+    return render_template('categorias.html')
+
 
 #cRud categorias 
 @app.route('/')
-def categorias():
+def index():
     tasks = Tasks.query.all()
     return render_template('categorias.html', tasks=tasks)
 
@@ -26,3 +27,6 @@ if __name__ =='__main__':
     with app.app_context():
         db.create_all()
     app.run(debug=True)
+    
+    
+    #Crud categorias
