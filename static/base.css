@@ -1,8 +1,11 @@
-
-
+h1{
+    font-size: 3em;
+    font-family: 'Times New Roman', Times, serif;
+}
 
 p {
-    font-size: 1.2em;
-    color: #cc3c3c;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.3em;
+    color: #952b2b;
     padding: 10px;
 }
