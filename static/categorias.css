@@ -1,6 +1,18 @@
-
-
 body {
     text-align: center;
 }
 
+h2{
+    justify-content: right;
+    text-align:initial;
+    padding: 20px;
+}
+
+h1{
+    padding: 40px;
+}
+
+form{
+    padding-bottom: 50px;
+    font-size: large;
+}
