@@ -9,12 +9,27 @@
 <body>
 <body>
     <h1>Categoria</h1>
-    <h2>Escolha que tipo de comida você deseja:</h2>
-        <ul>
-            {% for task in tasks %}
-                <li> {{ task.description }} </li>
-            {% endfor %}
-        </ul>
+    <h2>Escreva que tipo de comida você deseja:</h2>
+        <form action="/create" method="POST">
+            <input type="text" name="description" required>
+            <button type="submit">Criar</button>
+        </form>
+
+    <h2>Sua Lista</h2>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <form action="/update/{{ task.id }}" method="POST" style="display: inline;">
+                    <input type="text" name="description" value="{{ task.description }}">
+                    <button type="submit">Atualizar</button>
+                </form>
+
+                <form action="/delete/{{ task.id }}" method="POST" style="display: inline;">
+                    <button type="submit">Excluir</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
 
 
 </body>
