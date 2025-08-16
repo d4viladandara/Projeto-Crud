@@ -13,13 +13,13 @@ class Tasks(db.Model):
 
 #cRud base (fazer depoissss)
 @app.route('/')
-def categorias():
-    return render_template('categorias.html')
+def index():
+    return render_template('base.html')
 
 
 #cRud categorias 
-@app.route('/')
-def index():
+@app.route('/categorias')
+def categorias():
     tasks = Tasks.query.all()
     return render_template('categorias.html', tasks=tasks)
 
