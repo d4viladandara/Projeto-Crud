@@ -10,8 +10,11 @@
 <body>
     <h1>Categoria</h1>
     <h2>Escolha que tipo de comida você deseja:</h2>
-    <a href="home.html" class="btn">Doce</a>
-    <a href="home.html" class="btn">Salgado</a>
+        <ul>
+            {% for task in tasks %}
+                <li> {{ task.description }} </li>
+            {% endfor %}
+        </ul>
 
 
 </body>
