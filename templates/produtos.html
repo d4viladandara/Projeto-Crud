@@ -1,25 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>teste</h1>
-        {% extends "base.html" %}
+{% extends "base.html" %}
 
-    {% block title %}Produtos{% endblock %}
+{% block title %}Produtos{% endblock %}
 
-    {% block content %}
-    <h2>Lista de Produtos</h2>
-    <ul>
-        {% for produto in produtos %}
-        <li>{{ produto.description }}</li>
+{% block content %}
+<h2>Lista de Produtos</h2>
+<ul>
+    {% for produto in produtos %}
+        <li>{{ produto.name }} - {{ produto.price }}</li>
+    {% endfor %}
+</ul>
+
+<h2>Adicionar Produto</h2>
+<form action="/produtos/create" method="POST">
+    <input type="text" name="name" placeholder="Nome do Produto" required>
+    <input type="number" step="0.01" name="price" placeholder="Preço" required>
+    <input type="text" name="description" placeholder="Descrição">
+    <select name="category_id" required>
+        <option value="">Selecione a Categoria</option>
+        {% for categoria in categorias %}
+            <option value="{{ categoria.id }}">{{ categoria.description }}</option>
         {% endfor %}
-    </ul>
-    {% endblock %}
-
-    
-</body>
-</html>
+    </select>
+    <button type="submit">Adicionar</button>
+</form>
+{% endblock %}

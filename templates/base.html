@@ -7,26 +7,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
 </head>
 <body>
-    <header>
-        <p>Seja bem-vindo!</p>
-        <h1>Doce Amore</h1>
-        <h2>Confeitaria</h2>
-    </header>
+    <nav>
+        <a href="/">Início</a> |
+        <a href="/categorias">Categorias</a> |
+        <a href="/produtos">Produtos</a>
+    </nav>
 
     <main>
-        <nav>
-            <!-- Link que chama a rota correta -->
-            <a href="{{ url_for('categorias') }}" class="btn">Gerenciar Categorias</a>
-
-        </nav>
-
-        <!-- Aqui o conteúdo muda dependendo da página -->
-        {% block content %}
-        {% endblock %}
+        {% block content %}{% endblock %}
     </main>
 
     <footer>
-        <p>&copy; 2025 Doce Amore - Trabalho Acadêmico</p>
+        <p>© 2025 Doce Amore – Trabalho Acadêmico</p>
     </footer>
 </body>
 </html>
