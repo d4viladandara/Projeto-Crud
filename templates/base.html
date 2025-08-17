@@ -3,19 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Lojinha de Doces{% endblock %}</title>
-    <link rel="stylesheet" href="/static/style.css" />
-    <link rel="stylesheet" href="/static/base.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
 </head>
 <body>
     <header>
-        <p> seja bem-vindo! </p>
-        <h1>Doce Amore </h1>
-        <h2> Confeitaria </h2>
+        <p>Seja bem-vindo!</p>
+        <h1>Doce Amore</h1>
+        <h2>Confeitaria</h2>
     </header>
 
     <main>
-        <a href="{{ url_for('categorias') }}" class="btn">Entrar</a>
+        <nav>
+            <!-- Link que chama a rota correta -->
+            <a href="{{ url_for('categorias') }}" class="btn">Gerenciar Categorias</a>
+        </nav>
+
+        <!-- Aqui o conteúdo muda dependendo da página -->
+        {% block content %}
+        {% endblock %}
     </main>
 
+    <footer>
+        <p>&copy; 2025 Doce Amore - Trabalho Acadêmico</p>
+    </footer>
 </body>
 </html>

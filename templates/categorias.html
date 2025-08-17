@@ -2,35 +2,45 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Lojinha de Doces{% endblock %}</title>
+    <title>{% block title %}categorias{% endblock %}</title>
     <link rel="stylesheet" href="/static/categorias.css" />
     <link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
-<body>
-    <h1>Categoria</h1>
-    <h2>Escreva que tipo de comida você deseja:</h2>
-        <form action="/create" method="POST">
-            <input type="text" name="description" required>
-            <button type="submit">Criar</button>
+
+    <header>
+        <h1>Gerenciar Categorias</h1>
+        <h2>Escreva que tipo de comida você deseja:</h2>
+    </header>
+
+    <!-- Formulário para criar categoria -->
+    <section>
+        <form action="/categorias/create" method="POST" class="form-criar">
+            <input type="text" name="description" placeholder="Digite a categoria" required>
+            <button type="submit" class="btn">Criar</button>
         </form>
+    </section>
 
-    <h2>Sua Lista</h2>
-    <ul>
-        {% for task in tasks %}
-            <li>
-                <form action="/update/{{ task.id }}" method="POST" style="display: inline;">
-                    <input type="text" name="description" value="{{ task.description }}">
-                    <button type="submit">Atualizar</button>
-                </form>
+    <!-- Lista de categorias -->
+    <section>
+        <h2>Sua Lista</h2>
+        <ul>
+            {% for categoria in categorias %}
+                <li>
+                    <!-- Form de atualizar -->
+                    <form action="/categoria/update/{{ categoria.id }}" method="POST" class="form-inline">
+                        <input type="text" name="description" value="{{ categoria.description }}">
+                        <button type="submit" class="btn atualizar">Atualizar</button>
+                    </form>
 
-                <form action="/delete/{{ task.id }}" method="POST" style="display: inline;">
-                    <button type="submit">Excluir</button>
-                </form>
-            </li>
-        {% endfor %}
-    </ul>
-
+                    <!-- Form de deletar -->
+                    <form action="categoria/delete/{{ categoria.id }}" method="POST" class="form-inline">
+                        <button type="submit" class="btn excluir">Excluir</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
 
 </body>
 </html>
