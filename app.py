@@ -36,18 +36,14 @@ def categorias():
 
 # ----- CRIAR -----
 @app.route('/categorias/create', methods=['POST'])
-def criar_categoria():
+def create_categoria():
+    name = request.form['name']
     description = request.form['description']
-
-    # verificar duplicado
-    existe = Categoria.query.filter_by(description=description).first()
-    if existe:
-        return 'Erro: Categoria já cadastrada'
-
-    nova = Categoria(description=description)
-    db.session.add(nova)
+    nova_categoria = Categoria(name=name, description=description)
+    db.session.add(nova_categoria)
     db.session.commit()
     return redirect('/categorias')
+
 
 
 # ----- DELETAR -----
