@@ -6,13 +6,19 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 db = SQLAlchemy(app)
 
 # ---------- MODELO ----------
-class Categoria(db.Model):  # singular (representa UMA categoria)
+class Categoria(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    description = db.Column(db.String(100), unique=True, nullable=False)
-    
-class Produtos(db.Model):  # singular (representa UMA categoria)
+    description = db.Column(db.String(200))
+    name = db.Column(db.String(100), nullable=False)
+    produtos = db.relationship('Produto', backref='categoria', lazy=True)
+
+class Produto(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    description = db.Column(db.String(100), unique=True, nullable=False)
+    name = db.Column(db.String(100), nullable=False)
+    price = db.Column(db.Float, nullable=False)
+    description = db.Column(db.String(200))
+    category_id = db.Column(db.Integer, db.ForeignKey('categoria.id'), nullable=False)
+
 
 
 # ---------- ROTAS ----------
