@@ -87,7 +87,7 @@ header nav ul li a {
 }
 
 header nav ul li a:hover {
-    background: #f15252;
+    background: #ef6161;
     color: #fff;
 }
 /* ---------- TITULOS ---------- */
@@ -142,14 +142,14 @@ header nav ul li a:hover {
     padding: 12px 20px;
     border: none;
     border-radius: 8px;
-    background-color: #6b1616;
+    background-color: #871b1b;
     color: rgb(241, 243, 208);
     cursor: pointer;
     font-size: 16px;
 }
 
 .form-criar button:hover {
-    background-color: #555;
+    background-color: #ef6161;
 }
 
 /* ---------- LISTA ---------- */
@@ -211,4 +211,10 @@ ul li {
 
 h1, h2 {
     margin: 15px 0;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+h1{
+    font-family: 'Times New Roman', Times, serif;
 }

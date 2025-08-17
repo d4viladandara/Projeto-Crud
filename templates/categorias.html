@@ -20,36 +20,39 @@
     </header>
 
 
-    {% block title %}Categorias{% endblock %}
+    {% block title %}<h1>Categorias</h1> {% endblock %}
 
     {% block content %}
-        <h1>Lista de Categorias</h1>
+        <h2> Adicionar nova Categoria</h2>
 
         <!-- Formulário para adicionar categoria -->
         <form action="/categorias/create" method="POST" class="form-criar">
-            <input type="text" name="name" placeholder="Nome da Categoria">
-            <input type="text" name="description" placeholder="Descrição da Categoria">
+            <input type="text" name="name" placeholder="Nome da Categoria" required>
+            <input type="text" name="description" placeholder="Descrição da Categoria" required>
             <button type="submit">Adicionar</button>
         </form>
 
 
         <!-- Lista de categorias existentes -->
-        <ul>
-            {% for categoria in categorias %}
-                <li>
-                    <!-- Form de atualizar -->
-                    <form action="/categorias/update/{{ categoria.id }}" method="POST" class="form-inline">
-                        <input type="text" name="description" value="{{ categoria.description }}">
-                        <button type="submit" class="atualizar">Atualizar</button>
-                    </form>
+        <h2> Lista de Categorias:</h2>
+        <section class="botoes">
+            <ul>
+                {% for categoria in categorias %}
+                    <li>
+                        <!-- Form de atualizar -->
+                        <form action="/categorias/update/{{ categoria.id }}" method="POST" class="form-inline">
+                            <input type="text" name="description" value="{{ categoria.description }}">
+                            <button type="submit" class="atualizar">Atualizar</button>
+                        </form>
 
-                    <!-- Form de deletar -->
-                    <form action="/categorias/delete/{{ categoria.id }}" method="POST" class="form-inline">
-                        <button type="submit" class="excluir">Excluir</button>
-                    </form>
-                </li>
-            {% endfor %}
-        </ul>
+                        <!-- Form de deletar -->
+                        <form action="/categorias/delete/{{ categoria.id }}" method="POST" class="form-inline">
+                            <button type="submit" class="excluir">Excluir</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>  
     {% endblock %}
 
 </body>
