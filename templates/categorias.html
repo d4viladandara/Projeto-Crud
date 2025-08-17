@@ -9,12 +9,21 @@
 <body>
 
     <header>
-        <h1>Gerenciar Categorias</h1>
-        <h2>Escreva que tipo de comida você deseja:</h2>
+        <div class="logo">
+            <h1>Doce Amore</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/categorias" class="btn">Escolher Categoria</a></li>
+                <li><a href="/produtos" class="btn">Ver Produtos</a></li>
+            </ul>
+        </nav>
     </header>
 
+
+
     <!-- Formulário para criar categoria -->
-    <section>
+    <section class="barraPesquisa">
         <form action="/categorias/create" method="POST" class="form-criar">
             <input type="text" name="description" placeholder="Digite a categoria" required>
             <button type="submit" class="btn">Criar</button>
@@ -22,7 +31,7 @@
     </section>
 
     <!-- Lista de categorias -->
-    <section>
+    <section class="delatu">
         <h2>Sua Lista</h2>
         <ul>
             {% for categoria in categorias %}

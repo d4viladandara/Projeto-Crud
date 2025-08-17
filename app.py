@@ -9,6 +9,10 @@ db = SQLAlchemy(app)
 class Categoria(db.Model):  # singular (representa UMA categoria)
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(100), unique=True, nullable=False)
+    
+class Produtos(db.Model):  # singular (representa UMA categoria)
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String(100), unique=True, nullable=False)
 
 
 # ---------- ROTAS ----------
@@ -66,3 +70,11 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
     app.run(debug=True)
+
+
+
+# ---------- ROTAS PRODUTOS----------
+@app.route('/produtos')
+def produtos():
+    produtos = Produtos.query.all()
+    return render_template('produtos.html', produtos=produtos)

@@ -1,14 +1,25 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>teste</h1>
+        {% extends "base.html" %}
 
-{% block title %}Home - Lojinha de Doces{% endblock %}
+    {% block title %}Produtos{% endblock %}
 
-{% block content %}
-<h2>Lista de Doces</h2>
-<ul>
-    {% for doce in doces %}
-        <li>
-            <a href="/doce/{{ doce.id }}">{{ doce.nome }}</a> - R$ {{ "%.2f"|format(doce.preco) }}
-        </li>
-    {% endfor %}
-</ul>
-{% endblock %}
+    {% block content %}
+    <h2>Lista de Produtos</h2>
+    <ul>
+        {% for produto in produtos %}
+        <li>{{ produto.description }}</li>
+        {% endfor %}
+    </ul>
+    {% endblock %}
+
+    
+</body>
+</html>
