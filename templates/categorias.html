@@ -37,13 +37,13 @@
             {% for categoria in categorias %}
                 <li>
                     <!-- Form de atualizar -->
-                    <form action="/categoria/update/{{ categoria.id }}" method="POST" class="form-inline">
+                    <form action="/categorias/update/{{ categoria.id }}" method="POST" class="form-inline">
                         <input type="text" name="description" value="{{ categoria.description }}">
                         <button type="submit" class="btn atualizar">Atualizar</button>
                     </form>
 
                     <!-- Form de deletar -->
-                    <form action="categoria/delete/{{ categoria.id }}" method="POST" class="form-inline">
+                    <form action="categorias/delete/{{ categoria.id }}" method="POST" class="form-inline">
                         <button type="submit" class="btn excluir">Excluir</button>
                     </form>
                 </li>
