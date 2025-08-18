@@ -34,11 +34,15 @@
 
 
         <!-- Lista de categorias existentes -->
-        <h2> Lista de Categorias:</h2>
-        <section class="botoes">
+            <h2>Lista de Categorias</h2>
             <ul>
                 {% for categoria in categorias %}
                     <li>
+                        <!-- Data sozinha -->
+                        <div class="data-criacao">
+                            Criado em: {{ categoria.created_at.strftime('%d/%m/%Y %H:%M') }}
+                        </div>
+
                         <!-- Form de atualizar -->
                         <form action="/categorias/update/{{ categoria.id }}" method="POST" class="form-inline">
                             <input type="text" name="description" value="{{ categoria.description }}">
@@ -52,6 +56,8 @@
                     </li>
                 {% endfor %}
             </ul>
+
+
         </section>  
     {% endblock %}
 
