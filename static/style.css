@@ -246,3 +246,25 @@ footer{
     display: block;
 }
 
+/* Estilo do campo de preço */
+input[name="price"] {
+    width: 120px;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    text-align: right;
+    background-color: #fffdf9;
+    transition: border-color 0.3s;
+}
+
+select[name="category_id"] {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    background-color: #fffdf9;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
