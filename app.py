@@ -1,123 +1,69 @@
 from flask import Flask, render_template, request, redirect
-from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from models import db
+import services as service
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
-db = SQLAlchemy(app)
-
-# ---------- MODELO ----------
-class Categoria(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(200))
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)  # <-- novo campo
-    produtos = db.relationship('Produto', backref='categoria', lazy=True)
-
-class Produto(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200), nullable=False)
-    price = db.Column(db.Float, nullable=False)
-    description = db.Column(db.String(200))
-    category_id = db.Column(db.Integer, db.ForeignKey('categoria.id'))
+db.init_app(app)
 
 # ---------- ROTAS ----------
 @app.route('/')
 def index():
     return render_template('index.html')
 
-
-
-# ----- LISTAR -----
+# ----- CATEGORIAS -----
 @app.route('/categorias')
-def categorias():
-    categorias = Categoria.query.all()
+def listar_categorias():
+    categorias = service.CategoriaService.listar_categorias()
     return render_template('categorias.html', categorias=categorias)
 
-
-
-# ----- CRIAR -----
 @app.route('/categorias/create', methods=['POST'])
-def create_categoria():
+def criar_categoria():
     name = request.form['name']
     description = request.form['description']
-    nova_categoria = Categoria(name=name, description=description)
-    db.session.add(nova_categoria)
-    db.session.commit()
+    service.CategoriaService.criar_categoria(name, description)
     return redirect('/categorias')
 
-
-
-# ----- DELETAR -----
-@app.route('/categorias/delete/<int:id>', methods=['POST'])
-def deletar_categoria(id):
-    categoria = Categoria.query.get(id)  # singular pq é só uma
-    if categoria:
-        db.session.delete(categoria)
-        db.session.commit()
-    return redirect('/categorias')
-
-
-# ----- ATUALIZAR -----
 @app.route('/categorias/update/<int:id>', methods=['POST'])
 def atualizar_categoria(id):
-    categoria = Categoria.query.get(id)
-    if categoria:
-        categoria.description = request.form['description']
-        db.session.commit()
+    description = request.form['description']
+    service.CategoriaService.atualizar_categoria(id, description)
     return redirect('/categorias')
 
+@app.route('/categorias/delete/<int:id>', methods=['POST'])
+def deletar_categoria(id):
+    service.CategoriaService.deletar_categoria(id)
+    return redirect('/categorias')
 
-
-
-
-# ---------- ROTAS PRODUTOS----------
-# ---------- LISTAR PRODUTOS ----------
+# ----- PRODUTOS -----
 @app.route('/produtos')
 def listar_produtos():
-    produtos = Produto.query.all()
-    categorias = Categoria.query.all()  # para exibir no select
+    produtos = service.ProdutoService.listar_produtos()
+    categorias = service.CategoriaService.listar_categorias()
     return render_template('produtos.html', produtos=produtos, categorias=categorias)
 
-# ---------- CRIAR PRODUTO ----------
 @app.route('/produtos/create', methods=['POST'])
 def criar_produto():
     name = request.form['name']
     price = request.form['price']
     description = request.form['description']
     category_id = request.form['category_id']
-
-    novo_produto = Produto(
-        name=name,
-        price=price,
-        description=description,
-        category_id=category_id
-    )
-    db.session.add(novo_produto)
-    db.session.commit()
+    service.ProdutoService.criar_produto(name, price, description, category_id)
     return redirect('/produtos')
 
-# ---------- ATUALIZAR PRODUTO ----------
 @app.route('/produtos/update/<int:id>', methods=['POST'])
 def atualizar_produto(id):
-    produto = Produto.query.get(id)
-    if produto:
-        produto.name = request.form['name']
-        produto.price = request.form['price']
-        produto.description = request.form['description']
-        produto.category_id = request.form['category_id']
-        db.session.commit()
+    name = request.form['name']
+    price = request.form['price']
+    description = request.form['description']
+    category_id = request.form['category_id']
+    service.ProdutoService.atualizar_produto(id, name, price, description, category_id)
     return redirect('/produtos')
 
-# ---------- DELETAR PRODUTO ----------
 @app.route('/produtos/delete/<int:id>', methods=['POST'])
 def deletar_produto(id):
-    produto = Produto.query.get(id)
-    if produto:
-        db.session.delete(produto)
-        db.session.commit()
+    service.ProdutoService.deletar_produto(id)
     return redirect('/produtos')
-
 
 # ---------- MAIN ----------
 if __name__ == '__main__':
